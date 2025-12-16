@@ -1,6 +1,6 @@
 # token-auth
 
-This example showcases the usage of token base authentication. Only clients
+This example showcases the usage of token-based authentication. Only clients
 with a valid (correctly signed) jwt will be able to communicate with the
 resonate server.
 
@@ -23,9 +23,9 @@ export MY_TOKEN=$(jwt encode -A RS256 -S @private_key.pem -P prefix='')
 ```
 
 'prefix' is a custom claim supported by the resonate server. It controls the
-promises this token have access to. An empty prefix will provided acess to all
+promises this token have access to. An empty prefix will provided access to all
 the promises. Clients or Workers that do no have a token will not have access to
-any promise. This Authentication and Authorization schema is usefull when it is
+any promise. This Authentication and Authorization schema is useful when it is
 necessary to limit access of the server only to trusted clients, but each of
 these client requires full access to all promises.
 
@@ -51,12 +51,12 @@ the code to use a different token, signed with a different private key, or leave
 env variable
 ```ts
 // Assuming process.env.RESONATE_TOKEN is set to a valid JWT
-// this an authenticated resonate instance
+// this is an authenticated resonate instance
 const resonate = new Resonate({url: "server_url"})
 ```
 - The resonate server requires a custom 'prefix' JWT claim. This claim is used to
-control acess to promises. A prefix set to "" (empty string) will grant access to
-every promise, the absense of the prefix claim will make the JWT invalid and deny
+control access to promises. A prefix set to "" (empty string) will grant access to
+every promise, the absence of the prefix claim will make the JWT invalid and deny
 access to the server. The prefix feature is explain in detail at [prefix authorization](../prefix-auz)
 
 

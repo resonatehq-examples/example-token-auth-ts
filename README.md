@@ -4,7 +4,7 @@ of resonate's token based authentication and prefix based authorization.
 
 These examples use jwt tokens generated using [jwt cli](https://github.com/mike-engel/jwt-cli)
 and self generated private and public key pairs. For production usage we recommend more robust
-security providers like [keycloack](https://www.keycloak.org/).
+security providers like [keycloak](https://www.keycloak.org/).
 
 ## Basic setup
 For all the examples in this repository we will require a similar setup, when necessary the

@@ -5,7 +5,7 @@ function* helloAuth(ctx: Context, greeting: string) {
   return result
 }
 
-// A resonate instances that connects to a server deployed locally.
+// A Resonate instance that connects to a server deployed locally.
 // Assumes the generated JWT is stored in the env variable MY_TOKEN
 const resonateAuthenticated = new Resonate({url: "http://localhost:8001", token: process.env.MY_TOKEN})
 
