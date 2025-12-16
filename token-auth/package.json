@@ -1,0 +1,15 @@
+{
+  "name": "token-auth",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@resonatehq/sdk": "^0.9.5"
+  }
+}
