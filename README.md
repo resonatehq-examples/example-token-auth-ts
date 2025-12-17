@@ -2,9 +2,15 @@
 This repository contains a couple of resonate applications that showcase the usage
 of resonate's token based authentication and prefix based authorization.
 
-These examples use jwt tokens generated using [jwt cli](https://github.com/mike-engel/jwt-cli)
+These examples use JWT tokens generated using [jwt cli](https://github.com/mike-engel/jwt-cli)
 and self generated private and public key pairs. For production usage we recommend more robust
 security providers like [keycloak](https://www.keycloak.org/).
+
+## Which example should I use?
+
+**token-auth**: Use this when you need to authenticate clients (ensure only trusted clients can connect), but all authenticated clients should have full access to all promises. This is suitable for private networks or microservices where every authenticated client is equally trusted.
+
+**prefix-authz**: Use this when you need both authentication and data isolation. Clients are issued tokens with a prefix claim that restricts them to only access promises matching that prefix. This enables multi-tenant systems, role-based access control, or isolating different workers/services from accessing each other's promises.
 
 ## Basic setup
 For all the examples in this repository we will require a similar setup, when necessary the

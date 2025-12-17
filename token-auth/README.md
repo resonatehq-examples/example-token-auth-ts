@@ -24,7 +24,7 @@ export MY_TOKEN=$(jwt encode -A RS256 -S @private_key.pem -P prefix='')
 
 'prefix' is a custom claim supported by the resonate server. It controls the
 promises this token have access to. An empty prefix will provided access to all
-the promises. Clients or Workers that do no have a token will not have access to
+the promises. Clients or Workers that do not have a token will not have access to
 any promise. This Authentication and Authorization schema is useful when it is
 necessary to limit access of the server only to trusted clients, but each of
 these client requires full access to all promises.
@@ -57,6 +57,6 @@ const resonate = new Resonate({url: "server_url"})
 - The resonate server requires a custom 'prefix' JWT claim. This claim is used to
 control access to promises. A prefix set to "" (empty string) will grant access to
 every promise, the absence of the prefix claim will make the JWT invalid and deny
-access to the server. The prefix feature is explain in detail at [prefix authorization](../prefix-auz)
+access to the server. The prefix feature is explain in detail at [prefix authorization](../prefix-authz)
 
 
