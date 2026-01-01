@@ -1,62 +1,74 @@
 # token-auth
 
 This example showcases the usage of token-based authentication. Only clients
-with a valid (correctly signed) jwt will be able to communicate with the
-resonate server.
+with a valid (correctly signed) JWT will be able to communicate with the
+Resonate server.
 
-To install dependencies:
+## Prerequisites
+
+- Node.js (v18+)
+- [Resonate server](https://docs.resonatehq.io/) installed
+- [jwt-cli](https://github.com/mike-engel/jwt-cli) installed
+
+## Setup
+
+Install dependencies:
 
 ```bash
-bun install
+npm install
 ```
 
+Generate a private/public key pair:
 
-We will need a private/public key pair
 ```bash
 openssl genrsa -out private_key.pem 2048
 openssl rsa -in private_key.pem -pubout -out public_key.pem
 ```
 
-Generate a token and store it in MY_TOKEN env variable:
+Generate a token and store it in the `MY_TOKEN` environment variable:
+
 ```bash
 export MY_TOKEN=$(jwt encode -A RS256 -S @private_key.pem -P prefix='')
 ```
 
-'prefix' is a custom claim supported by the resonate server. It controls the
-promises this token have access to. An empty prefix will provided access to all
-the promises. Clients or Workers that do not have a token will not have access to
-any promise. This Authentication and Authorization schema is useful when it is
-necessary to limit access of the server only to trusted clients, but each of
-these client requires full access to all promises.
+The `prefix` is a custom claim supported by the Resonate server. It controls which
+promises this token has access to. An empty prefix grants access to all
+promises. Clients or workers without a token will not have access to
+any promise. This authentication and authorization scheme is useful when you need
+to limit server access to trusted clients, but each client requires full access
+to all promises.
 
-### To run:
+## To run
 
-Start a resonate server with the generated public key:
+Start a Resonate server with the generated public key:
+
 ```bash
-resonate serve --api-auth-public-key public_key.pem
+resonate dev --api-auth-public-key public_key.pem
 ```
 
 Run the worker:
+
 ```bash
-bun run index.ts
+npx tsx index.ts
 ```
 
-If a resonate instance without a token or an invalid token is used, the worker will
-crash with a 'ResonateError: The request is unauthorized'. To try this behavior, modify
+If a Resonate instance without a token or with an invalid token is used, the worker will
+crash with a `ResonateError: The request is unauthorized`. To try this behavior, modify
 the code to use a different token, signed with a different private key, or leave out the
 `token` field.
 
-### Advance features
-- A resonate instance can implicitly take the token argument by setting the `RESONATE_TOKEN`
-env variable
+## Advanced features
+
+- A Resonate instance can implicitly take the token argument by setting the `RESONATE_TOKEN`
+environment variable:
+
 ```ts
-// Assuming process.env.RESONATE_TOKEN is set to a valid JWT
-// this is an authenticated resonate instance
+// Assuming process.env.RESONATE_TOKEN is set to a valid JWT,
+// this is an authenticated Resonate instance
 const resonate = new Resonate({url: "server_url"})
 ```
-- The resonate server requires a custom 'prefix' JWT claim. This claim is used to
-control access to promises. A prefix set to "" (empty string) will grant access to
-every promise, the absence of the prefix claim will make the JWT invalid and deny
-access to the server. The prefix feature is explain in detail at [prefix authorization](../prefix-authz)
 
-
+- The Resonate server requires a custom `prefix` JWT claim. This claim is used to
+control access to promises. A prefix set to `""` (empty string) will grant access to
+every promise. The absence of the prefix claim will make the JWT invalid and deny
+access to the server. The prefix feature is explained in detail in the [prefix-authz](../prefix-authz) example.

@@ -33,17 +33,20 @@ openssl rsa -in private_key.pem -pubout -out public_key.pem
 
 Install jwt-cli:
 ```
-# Follow installation instructions at https://github.com/mike-engel/jwt-cli?tab=readme-ov-file#installation
+# macOS
+brew install mike-engel/jwt-cli/jwt-cli
+
+# Other platforms: follow instructions at https://github.com/mike-engel/jwt-cli#installation
 ```
 
 jwt-cli quick usage guide:
 ```
 # Encode/sign JWT (this is all we will need for this example)
-jwt encode --secret @private.pem -A RS256 '{"prefix":"myPrefix"}'
+jwt encode --secret @private_key.pem -A RS256 '{"prefix":"myPrefix"}'
 ```
 
-All examples will start the resonate server the same way
+All examples will start the Resonate server the same way:
 ```
-resonate serve --api-auth-public-key public_key.pem
+resonate dev --api-auth-public-key public_key.pem
 ```
-This command starts the resonate server with jwt based authentication and authorization.
+This command starts the Resonate server with JWT-based authentication and authorization.

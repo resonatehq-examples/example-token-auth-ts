@@ -1,12 +1,10 @@
 {
-  "name": "token-auth",
-  "module": "index.ts",
+  "name": "prefix-authz",
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
+    "@types/node": "^22",
+    "tsx": "^4",
     "typescript": "^5"
   },
   "dependencies": {
