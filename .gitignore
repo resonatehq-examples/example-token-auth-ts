@@ -140,3 +140,9 @@ vite.config.ts.timestamp-*
 
 # Bun lock
 **/bun.lock
+
+package-lock.json
+
+# Generated RSA key pair
+private_key.pem
+public_key.pem
