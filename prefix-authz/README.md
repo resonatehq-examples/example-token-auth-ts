@@ -28,7 +28,7 @@ openssl rsa -in private_key.pem -pubout -out public_key.pem
 Generate a token and store it in the `MY_TOKEN` environment variable:
 
 ```bash
-export MY_TOKEN=$(jwt encode -A RS256 -S @private_key.pem -P prefix='worker-1')
+export MY_TOKEN=$(jwt encode -A RS256 -S @private_key.pem --exp=1h '{"prefix":"worker-1"}')
 ```
 
 The `prefix` is a custom claim supported by the Resonate server. It controls which
@@ -76,7 +76,7 @@ console.log(await workflow.run("worker-1:workflow.id", "hello"))
 Start a Resonate server with the generated public key:
 
 ```bash
-resonate dev --api-auth-public-key public_key.pem
+resonate dev --auth-publickey public_key.pem
 ```
 
 Run the worker:
