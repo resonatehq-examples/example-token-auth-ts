@@ -1,3 +1,11 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/banner-light.png">
+    <img alt="Token Auth — Resonate example" src="./assets/banner-dark.png">
+  </picture>
+</p>
+
 # example-token-auth-ts
 This repository contains a couple of resonate applications that showcase the usage
 of resonate's token based authentication and prefix based authorization.
